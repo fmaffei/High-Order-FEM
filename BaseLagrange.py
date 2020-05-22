@@ -35,5 +35,5 @@ print(B)
 
 fig = plt.figure()
 plt.grid()
-plt.plot(x[0, :], lagrange[:, 0], x[0, :], lagrange[:, 1], x[0, :], lagrange[:, 2])
+plt.plot(x[0, :], lagrange[:, :])
 plt.show()
