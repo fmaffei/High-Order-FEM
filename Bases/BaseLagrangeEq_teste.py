@@ -6,26 +6,29 @@ import matplotlib.pyplot as plt
 ordem = 5                                            # Ordem do polinómio
 li = -1                                              # Limite inferior do intervalo
 ls = 1                                               # Limite superior do intervalo
-reso = 0.01                                         # Resolução da curva
+reso = 0.01                                          # Resolução da curva
 
 lagrange = np.ones((int((ls-li)/reso)+1, ordem+1))   # Iniciando a produtória
-x = np.zeros((1, int((ls-li)/reso)+1))                 # Vetor para plotar a base
+x = np.zeros((1, int((ls-li)/reso)+1))               # Vetor para plotar a base
 
-for i in range(0, int((ls-li)/reso)+1, 1):             # Preencher o vetor de plot
+for i in range(0, int((ls-li)/reso)+1, 1):           # Preencher o vetor de plot
     x[0][i] = li + reso*i
 
 # Base equiespaçada
 
 B = np.zeros((1, ordem+1))                           # Matriz para gerar os pontos de zeros das bases
-passo = 2/ordem
-B[0][0] = li
-B[0][ordem] = ls
 
 if ordem > 1:                                        # Preenchendo o vetor de zeros
     for i in range(0, ordem, 1):
+        passo = 2 / ordem
+        B[0][0] = li
+        B[0][ordem] = ls
         B[0][0+i] = li + passo*i
 
-for k in range(0, int((ls-li)/reso)+1, 1):     # Valor de "x"
+elif ordem == 0:
+    B[0][0] = 1
+
+for k in range(0, int((ls-li)/reso)+1, 1):   # Valor de "x"
     for j in range(0, ordem+1, 1):           # Posição do zero
         for i in range(0, ordem+1, 1):       # Loop da produtória
             if i != j:
