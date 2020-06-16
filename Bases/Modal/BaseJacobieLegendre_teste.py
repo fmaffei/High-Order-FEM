@@ -8,14 +8,13 @@ import math as mt
 import numpy as np
 import matplotlib.pyplot as plt
 
-ordem = 8                                            # Ordem do polinómio
+ordem = 5                                            # Ordem do polinómio
 li = -1                                              # Limite inferior do intervalo
 ls = 1                                               # Limite superior do intervalo
 reso = 0.01                                          # Resolução da curva
 alpha = 0                                            # Valores para polinomio de Legendre
 beta = 0                                             # Valores para polinomio de Legendre
 
-lagrange = np.ones((int((ls-li)/reso)+1, ordem+1))   # Iniciando a produtória
 x = np.zeros((1, int((ls-li)/reso)+1))               # Vetor para plotar a base
 
 for i in range(0, int((ls-li)/reso)+1, 1):           # Preencher o vetor de plot
@@ -60,9 +59,19 @@ elif ordem > 1:
             B[k][0] = C[k][0]
         C = np.zeros((int((ls-li)/reso)+1, 1))
 
-# Rotina para plottar
+# Testando função polinomio de Jacobi
+Q = np.zeros((1, int((ls-li)/reso)+1))
+for i in range(0, int((ls-li)/reso)+1, 1):
+    from Polynomials.poly_jacobi import jacobi
+    Q[0][i] = jacobi(alpha, beta, ordem, x[0][i])
 
-fig = plt.figure()
+# Rotina para plottar
+fig1 = plt.figure()
 plt.grid()
 plt.plot(x[0, :], B[:, 0])
+
+fig2 = plt.figure()
+plt.grid()
+plt.plot(x[0, :], Q[0, :])
+
 plt.show()

@@ -3,7 +3,7 @@ Código para testar fundamentos teoricos da análise pro elementos finitos com m
 
 Probema simulado unidimensional:
 
-u^2-u=0
+u^2+u=0
 
 du/dx (0) = 1
 du/dx (10) = 1

@@ -8,7 +8,7 @@ import math as mt
 import numpy as np
 import matplotlib.pyplot as plt
 
-ordem = 6                                            # Ordem do polinómio
+ordem = 5                                            # Ordem do polinómio
 li = -1                                              # Limite inferior do intervalo
 ls = 1                                               # Limite superior do intervalo
 reso = 0.01                                          # Resolução da curva
@@ -67,9 +67,19 @@ elif ordem > 1:
 w = mt.pow(2, 2*ordem)*mt.pow(mt.factorial(ordem), 2) / mt.factorial(2*ordem)
 B = B*w
 
-# Rotina para plottar
+# Testando função polinomio de Jacobi. Essa forma é equivalente a escrita nas linhas anteriores.
+Q = np.zeros((1, int((ls-li)/reso)+1))
+for i in range(0, int((ls-li)/reso)+1, 1):
+    from Polynomials.poly_jacobi import jacobi
+    Q[0][i] = jacobi(alpha, beta, ordem, x[0][i])
 
-fig = plt.figure()
+# Rotina para plottar
+fig1 = plt.figure()
 plt.grid()
 plt.plot(x[0, :], B[:, 0])
+
+fig2 = plt.figure()
+plt.grid()
+plt.plot(x[0, :], Q[0, :])
+
 plt.show()
