@@ -26,16 +26,22 @@ def find_zeros(escolha, ordem):
     li = -1                                              # Limite inferior do intervalo
     ls = 1                                               # Limite superior do intervalo
     reso = 0.001                                         # Defini em quantos pontos são avaliados os polinômios
-    precis = mt.pow(10, -15)                             # Precisão do zero
+    precis = mt.pow(10, -9)                             # Precisão do zero
 
 # Aqui definimos as função que podem ser usadas. Quando adicionar uma função, adicionar na definição a descrição
 
     def funcao(ind):
-        legendre = jacobi(0, 0, ordem, ind)
-        chebyshev01 = jacobi(-0.5, -0.5, ordem, ind)
-        chebyshev02 = jacobi(0.5, 0.5, ordem, ind)
-        sele = {'legendre': legendre, 'chebyshev01': chebyshev01, 'chebyshev02': chebyshev02}
-        return sele[escolha]
+        if escolha == 'legendre':
+            retorno = jacobi(0, 0, ordem, ind)
+            return retorno
+
+        elif escolha == 'chebyshev01':
+            retorno = jacobi(-0.5, -0.5, ordem, ind)
+            return retorno
+
+        elif escolha == 'chebyshev02':
+            retorno = jacobi(0.5, 0.5, ordem, ind)
+            return retorno
 
     x = np.zeros((1, int((ls-li)/reso)+1))               # Vetor variavel independente
     y = np.zeros((1, int((ls-li)/reso)+1))               # Vetor resultado
